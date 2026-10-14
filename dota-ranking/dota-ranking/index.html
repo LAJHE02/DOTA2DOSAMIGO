@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ranking da galera no Dota</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page">
+    <header class="top">
+      <div>
+        <h1>Ranking da galera no Dota</h1>
+        <p class="sub">Somente partidas ranqueadas</p>
+      </div>
+      <div class="actions">
+        <span id="updated" class="updated"></span>
+        <button id="refresh" type="button">Atualizar</button>
+      </div>
+    </header>
+
+    <p id="status" class="status" role="status" aria-live="polite"></p>
+
+    <section id="highlights" class="highlights" aria-label="Destaques"></section>
+
+    <section aria-label="Ranking por medalha">
+      <div class="head" aria-hidden="true">
+        <span class="c-pos"></span>
+        <span class="c-player">Jogador</span>
+        <span class="c-medal">Medalha</span>
+        <span class="c-record">Vitórias e derrotas</span>
+        <span class="c-total">Partidas</span>
+        <span class="c-last">Últimas 5</span>
+        <span class="c-streak">Sequência</span>
+      </div>
+      <ol id="board" class="board"></ol>
+    </section>
+
+    <footer class="foot">
+      <p>O ranking segue a medalha atual de cada jogador (rank_tier do OpenDota). Em caso de empate,
+      imortais são ordenados pela posição no leaderboard e os demais por vitórias ranqueadas.
+      Perfis sem dados públicos aparecem sem partidas.</p>
+    </footer>
+  </div>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

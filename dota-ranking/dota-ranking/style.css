@@ -1,0 +1,170 @@
+:root {
+  --bg: #e8ecef;
+  --surface: #f6f8f9;
+  --ink: #17212b;
+  --muted: #5b6877;
+  --line: #c9d1d8;
+  --win: #1f8a4c;
+  --win-bg: #d5eedd;
+  --loss: #b8343a;
+  --loss-bg: #f4d9db;
+  --gold: #a8791a;
+  --focus: #1d5fd1;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12181f;
+    --surface: #1a222b;
+    --ink: #e7ecf0;
+    --muted: #93a0ad;
+    --line: #2c3743;
+    --win: #4cc37d;
+    --win-bg: #173a28;
+    --loss: #ef6a70;
+    --loss-bg: #40191c;
+    --gold: #d9a640;
+    --focus: #7fb0ff;
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+html { background: var(--bg); }
+body {
+  margin: 0;
+  font-family: 'Barlow Semi Condensed', 'Arial Narrow', system-ui, sans-serif;
+  font-size: 1.0625rem;
+  color: var(--ink);
+  background: var(--bg);
+  font-variant-numeric: tabular-nums;
+}
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.muted { color: var(--muted); }
+
+.page { max-width: 68rem; margin: 0 auto; padding: 2rem 1.25rem 3rem; }
+
+.top { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1rem; margin-bottom: 1.25rem; }
+h1 { margin: 0; font-size: clamp(2rem, 5vw, 3rem); line-height: 1; font-weight: 700; letter-spacing: -0.01em; }
+.sub { margin-top: 0.35rem; color: var(--muted); }
+.actions { display: flex; align-items: center; gap: 0.9rem; }
+.updated { color: var(--muted); font-size: 0.95rem; }
+button {
+  font: inherit; font-weight: 600; cursor: pointer;
+  padding: 0.55rem 1.1rem; border-radius: 0.4rem;
+  border: 2px solid var(--ink); background: var(--ink); color: var(--bg);
+}
+button:disabled { opacity: 0.6; cursor: progress; }
+
+.status { min-height: 1.5rem; margin-bottom: 0.75rem; color: var(--muted); }
+
+/* Destaques: uma faixa só, separada por linhas */
+.highlights { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 3px solid var(--ink); border-bottom: 1px solid var(--line); margin-bottom: 2rem; }
+.hl { padding: 1rem 1.25rem 1.1rem 0; }
+.hl + .hl { padding-left: 1.25rem; border-left: 1px solid var(--line); }
+.hl-label { color: var(--muted); font-size: 0.95rem; }
+.hl-name { font-size: 1.75rem; font-weight: 700; line-height: 1.1; margin-top: 0.25rem; overflow-wrap: anywhere; }
+.hl-value { margin-top: 0.15rem; color: var(--gold); font-weight: 600; font-size: 1.1rem; }
+
+/* Ranking */
+.head, .row {
+  display: grid;
+  grid-template-columns: 2.75rem minmax(12rem, 1.6fr) 8.5rem minmax(9.5rem, 1fr) 5rem 12.5rem 5rem;
+  grid-template-areas:
+    'pos player medal record total last streak'
+    '. heroes heroes heroes heroes heroes heroes';
+  row-gap: 0.7rem;
+  column-gap: 1rem;
+  align-items: center;
+}
+.head { padding: 0 1rem 0.5rem; color: var(--muted); font-size: 0.95rem; }
+.board { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+.row { padding: 0.7rem 1rem; background: var(--surface); border: 1px solid var(--line); border-radius: 0.5rem; }
+.row.first { border-color: var(--gold); box-shadow: inset 4px 0 0 var(--gold); }
+.row.skeleton { height: 7.2rem; opacity: 0.6; }
+.row.failed { grid-template-columns: 2.75rem 1fr; grid-template-areas: 'pos player'; }
+
+.c-pos { grid-area: pos; }
+.c-player { grid-area: player; }
+.c-medal { grid-area: medal; }
+.c-record { grid-area: record; }
+.c-total { grid-area: total; }
+.c-last { grid-area: last; }
+.c-streak { grid-area: streak; }
+.c-heroes { grid-area: heroes; padding-top: 0.7rem; border-top: 1px solid var(--line); }
+
+.cell[data-label]::before { display: none; }
+.c-pos { font-size: 1.9rem; font-weight: 700; color: var(--muted); line-height: 1; }
+.row.first .c-pos { color: var(--gold); }
+
+.c-player { display: flex; align-items: center; gap: 0.75rem; min-width: 0; }
+.avatar { width: 2.75rem; height: 2.75rem; border-radius: 0.35rem; background: var(--line); flex: none; object-fit: cover; }
+.who { min-width: 0; }
+.name { font-weight: 600; font-size: 1.2rem; text-decoration: none; overflow-wrap: anywhere; }
+a.name:hover { text-decoration: underline; }
+.obs { margin-top: 0.1rem; font-size: 0.95rem; color: var(--loss); font-weight: 500; }
+
+.medal-name { display: block; font-size: 1.3rem; font-weight: 700; line-height: 1.1; }
+
+.record { font-weight: 600; }
+.record .w { color: var(--win); }
+.record .l { color: var(--loss); }
+.record .pct { color: var(--muted); font-weight: 500; }
+.bar { height: 0.4rem; margin-top: 0.4rem; background: var(--loss-bg); border-radius: 99px; overflow: hidden; }
+.bar span { display: block; height: 100%; background: var(--win); }
+
+.c-total { font-weight: 600; }
+
+/* Últimas 5: o elemento mais marcante da tela */
+.tiles { display: flex; gap: 0.3rem; }
+.tile {
+  width: 2.1rem; height: 2.1rem; display: grid; place-items: center;
+  border-radius: 0.3rem; font-weight: 700; font-size: 1.05rem; text-decoration: none; line-height: 1;
+}
+.tile.win { background: var(--win-bg); color: var(--win); border: 2px solid var(--win); }
+.tile.loss { background: var(--loss-bg); color: var(--loss); border: 2px solid var(--loss); }
+.tile.empty { border: 2px dashed var(--line); }
+a.tile:hover { filter: brightness(0.95); }
+
+.heroes { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; }
+.hero { display: grid; }
+.hero-name { font-weight: 700; font-size: 1.1rem; line-height: 1.15; }
+.hero-stat { color: var(--muted); font-size: 0.95rem; }
+.hero-stat b { color: var(--ink); font-weight: 700; }
+
+.streak { font-weight: 700; font-size: 1.25rem; }
+.streak.win { color: var(--win); }
+.streak.loss { color: var(--loss); }
+
+.foot { margin-top: 1.5rem; color: var(--muted); font-size: 0.95rem; max-width: 60ch; }
+code { font-family: ui-monospace, monospace; font-size: 0.9em; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .row.skeleton { animation: pulse 1.2s ease-in-out infinite alternate; }
+  @keyframes pulse { to { opacity: 0.3; } }
+}
+
+@media (max-width: 52rem) {
+  .highlights { grid-template-columns: 1fr; }
+  .hl, .hl + .hl { padding: 0.8rem 0; border-left: 0; }
+  .hl + .hl { border-top: 1px solid var(--line); }
+
+  .head { display: none; }
+  .row {
+    grid-template-columns: 2.25rem 1fr 1fr auto;
+    grid-template-areas:
+      'pos player player streak'
+      'medal record record total'
+      'last last last last'
+      'heroes heroes heroes heroes';
+    row-gap: 0.7rem;
+  }
+  .row.failed { grid-template-columns: 2.25rem 1fr; }
+  .cell[data-label]::before {
+    display: block; content: attr(data-label);
+    color: var(--muted); font-size: 0.85rem; font-weight: 400; margin-bottom: 0.15rem;
+  }
+  .c-streak { text-align: right; }
+}
