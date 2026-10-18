@@ -111,7 +111,6 @@ export function highlights(players) {
   const ok = players.filter((p) => !p.error);
   return {
     bestWinRate: leaders(ok, (p) => (p.total >= MIN_GAMES_WINRATE ? p.winRate : 0)),
-    mostMatches: leaders(ok, (p) => p.total),
     bestStreak: leaders(ok, (p) => (p.streak.type === 'W' ? p.streak.count : 0)),
   };
 }
