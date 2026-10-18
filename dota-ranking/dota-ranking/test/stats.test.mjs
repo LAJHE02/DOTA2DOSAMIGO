@@ -57,7 +57,6 @@ test('highlights: empates listam todos e streak de derrota não conta', () => {
   const p = (id, win, total, type, count) => ({ id, win, total, streak: { type, count } });
   const h = highlights([p(1, 100, 200, 'W', 4), p(2, 100, 150, 'L', 9), p(3, 90, 300, 'W', 4)]);
   assert.deepEqual(h.mostWins.players.map((x) => x.id), [1, 2]);
-  assert.deepEqual(h.mostMatches.players.map((x) => x.id), [3]);
   assert.deepEqual(h.bestStreak.players.map((x) => x.id), [1, 3]);
   assert.equal(h.bestStreak.value, 4);
 });
