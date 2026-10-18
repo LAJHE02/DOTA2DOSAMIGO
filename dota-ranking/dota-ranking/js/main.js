@@ -4,6 +4,7 @@ import { getProfile, getRankedWL, getRankedMatches, getRankedHeroes, getHeroName
 import { readCache, writeCache } from './cache.js';
 import { buildPlayer, compareRank, highlights } from './stats.js';
 import { renderBoard, renderHighlights, renderSkeleton, setStatus, setUpdated, setBusy } from './ui.js';
+import { exportPng } from './export.js';
 
 async function runPool(items, size, fn) {
   let next = 0;
@@ -90,4 +91,5 @@ function plural(n) {
 }
 
 document.getElementById('refresh').addEventListener('click', () => load(true));
+document.getElementById('export').addEventListener('click', (e) => exportPng(e.currentTarget));
 load(false);

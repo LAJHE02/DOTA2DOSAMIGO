@@ -29,6 +29,7 @@ export function setUpdated(savedAt) {
 
 export function setBusy(busy) {
   const btn = document.getElementById('refresh');
+  document.getElementById('export').disabled = busy;
   btn.disabled = busy;
   btn.textContent = busy ? 'Carregando…' : 'Atualizar';
 }
@@ -144,7 +145,7 @@ function playerCell(p) {
   const text = el('div', { class: 'who' }, name);
   if (p.obs) text.append(el('p', { class: 'obs', text: `Obs.: ${p.obs}` }));
   const avatar = p.avatar
-    ? el('img', { class: 'avatar', src: p.avatar, alt: '', width: '44', height: '44', loading: 'lazy', referrerpolicy: 'no-referrer' })
+    ? el('img', { class: 'avatar', src: p.avatar, alt: '', width: '44', height: '44', referrerpolicy: 'no-referrer' })
     : el('span', { class: 'avatar empty', 'aria-hidden': 'true' });
   return el('div', { class: 'cell c-player' }, avatar, text);
 }

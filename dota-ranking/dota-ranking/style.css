@@ -167,4 +167,5 @@ code { font-family: ui-monospace, monospace; font-size: 0.9em; }
     color: var(--muted); font-size: 0.85rem; font-weight: 400; margin-bottom: 0.15rem;
   }
   .c-streak { text-align: right; }
+  button.secondary { background: transparent; color: var(--ink); }
 }
