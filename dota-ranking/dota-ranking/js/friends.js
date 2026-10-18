@@ -9,8 +9,6 @@ export const FRIENDS = [
   { id: 106141586, apelido: 'grola' },
   { id: 102561638, apelido: 'Laje' },
   { id: 133230557, apelido: 'gustavo' },
-  { id: 105536447, apelido: 'pará' },
   { id: 105659482, apelido: 'monicao' },
   { id: 184141728, apelido: 'rone' },
-  { id: 105627807, apelido: 'alek', obs: 'Conta boostada.' },
 ];
