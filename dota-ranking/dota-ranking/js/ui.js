@@ -47,7 +47,7 @@ function names(players) {
 
 export function renderHighlights(h) {
   const items = [
-    { label: 'Mais vitórias', group: h.mostWins, unit: (n) => plural(n, 'vitória', 'vitórias') },
+    { label: 'Melhor taxa de vitória', group: h.bestWinRate, unit: (n) => `${(n * 100).toFixed(1)}% de vitórias` },
     { label: 'Mais partidas', group: h.mostMatches, unit: (n) => plural(n, 'partida', 'partidas') },
     { label: 'Maior sequência de vitórias', group: h.bestStreak, unit: (n) => plural(n, 'seguida', 'seguidas') },
   ];

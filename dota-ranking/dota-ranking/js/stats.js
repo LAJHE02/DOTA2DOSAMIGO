@@ -1,4 +1,4 @@
-import { MATCH_LIMIT, TOP_HEROES } from './config.js';
+import { MATCH_LIMIT, TOP_HEROES, MIN_GAMES_WINRATE } from './config.js';
 
 const MEDALS = ['Arauto', 'Guardião', 'Cruzado', 'Arconte', 'Lenda', 'Ancião', 'Divino', 'Imortal'];
 
@@ -110,7 +110,7 @@ function leaders(players, score) {
 export function highlights(players) {
   const ok = players.filter((p) => !p.error);
   return {
-    mostWins: leaders(ok, (p) => p.win),
+    bestWinRate: leaders(ok, (p) => (p.total >= MIN_GAMES_WINRATE ? p.winRate : 0)),
     mostMatches: leaders(ok, (p) => p.total),
     bestStreak: leaders(ok, (p) => (p.streak.type === 'W' ? p.streak.count : 0)),
   };

@@ -7,6 +7,9 @@ export const RANKED_LOBBY_TYPE = 7;
 // Quantas partidas ranqueadas buscar por jogador (usadas nas últimas 5 e na sequência).
 export const MATCH_LIMIT = 100;
 
+// Para disputar "melhor taxa de vitória", o jogador precisa ter ao menos N partidas ranqueadas.
+export const MIN_GAMES_WINRATE = 20;
+
 // Quantos heróis mais jogados mostrar por jogador.
 export const TOP_HEROES = 3;
 
